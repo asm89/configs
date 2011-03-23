@@ -34,15 +34,17 @@ set wildmenu
 let g:SuperTabDefaultCompletionType = "<C-n>"
 
 " TeX
-au FileType tex,plaintex set tw=80
 au BufNewFile,BufRead *.tex set ft=tex
+au FileType tex,plaintex set tw=80
+au FileType tex,plaintex nmap <silent> <buffer> <Leader>m :make<CR>
+au FileType tex,plaintex set foldmethod=marker
+au FileType tex,plaintex set foldmarker=(fold),(end)
 
 " PHP
-au FileType php inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
 au FileType php source ~/.vim/plugin/php-doc.vim
-au FileType php inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-au FileType php nnoremap <C-P> :call PhpDocSingle()<CR>
-au FileType php vnoremap <C-P> :call PhpDocRange()<CR> 
+au FileType php inoremap <buffer> <C-P> <ESC>:call PhpDocSingle()<CR>i
+au FileType php nnoremap <buffer> <C-P> :call PhpDocSingle()<CR>
+au FileType php vnoremap <buffer> <C-P> :call PhpDocRange()<CR> 
 au FileType php set omnifunc=phpcomplete#CompletePHP
 au FileType php let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 au FileType php set noexpandtab
